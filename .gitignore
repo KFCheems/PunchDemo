@@ -1,0 +1,29 @@
+# Godot import and editor state
+.godot/
+.import/
+export_presets.cfg
+
+# Claude / local tooling
+.claude/
+.agents/
+.cursor/
+
+# Trellis local runtime
+.trellis/.developer
+.trellis/.current-task
+.trellis/.ralph-state.json
+.trellis/.agent-log
+.trellis/.session-id
+.trellis/.plan-log
+.trellis/.backup-*
+.trellis/workspace/
+.trellis/tasks/
+.trellis/.template-hashes.json
+
+# Temp files
+*.tmp
+*.new
+
+# Python cache
+**/__pycache__/
+**/*.pyc

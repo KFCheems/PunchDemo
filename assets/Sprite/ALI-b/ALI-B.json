@@ -1,0 +1,563 @@
+{ "frames": {
+   "ALI (walk) 0.aseprite": {
+	"frame": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (walk) 1.aseprite": {
+	"frame": { "x": 32, "y": 0, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (walk) 2.aseprite": {
+	"frame": { "x": 64, "y": 0, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Run) 0.aseprite": {
+	"frame": { "x": 0, "y": 32, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Run) 1.aseprite": {
+	"frame": { "x": 32, "y": 32, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Run) 2.aseprite": {
+	"frame": { "x": 64, "y": 32, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Run) 3.aseprite": {
+	"frame": { "x": 96, "y": 32, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Run) 4.aseprite": {
+	"frame": { "x": 128, "y": 32, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Run) 5.aseprite": {
+	"frame": { "x": 160, "y": 32, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Punch) 0.aseprite": {
+	"frame": { "x": 0, "y": 64, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Punch) 1.aseprite": {
+	"frame": { "x": 32, "y": 64, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Punch) 2.aseprite": {
+	"frame": { "x": 64, "y": 64, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (kick) 0.aseprite": {
+	"frame": { "x": 0, "y": 96, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (kick) 1.aseprite": {
+	"frame": { "x": 32, "y": 96, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Launch) 0.aseprite": {
+	"frame": { "x": 0, "y": 128, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Launch) 1.aseprite": {
+	"frame": { "x": 32, "y": 128, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Launch) 2.aseprite": {
+	"frame": { "x": 64, "y": 128, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (RunPunch) 0.aseprite": {
+	"frame": { "x": 0, "y": 160, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (RunPunch) 1.aseprite": {
+	"frame": { "x": 32, "y": 160, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Scroll) 0.aseprite": {
+	"frame": { "x": 0, "y": 192, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Scroll) 1.aseprite": {
+	"frame": { "x": 32, "y": 192, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Scroll) 2.aseprite": {
+	"frame": { "x": 64, "y": 192, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Scroll) 3.aseprite": {
+	"frame": { "x": 96, "y": 192, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (jump) 0.aseprite": {
+	"frame": { "x": 0, "y": 224, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (jump) 1.aseprite": {
+	"frame": { "x": 32, "y": 224, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (FrontGrappleThrow) 0.aseprite": {
+	"frame": { "x": 0, "y": 256, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (FrontGrappleThrow) 1.aseprite": {
+	"frame": { "x": 32, "y": 256, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (FrontGrappleThrow) 2.aseprite": {
+	"frame": { "x": 64, "y": 256, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (FrontGrappleThrow) 3.aseprite": {
+	"frame": { "x": 96, "y": 256, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (FrontGrappleThrow) 4.aseprite": {
+	"frame": { "x": 128, "y": 256, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (FrontGrappleThrow) 5.aseprite": {
+	"frame": { "x": 160, "y": 256, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Lift) 0.aseprite": {
+	"frame": { "x": 0, "y": 288, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Lift) 1.aseprite": {
+	"frame": { "x": 32, "y": 288, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Lift) 2.aseprite": {
+	"frame": { "x": 64, "y": 288, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Lift) 3.aseprite": {
+	"frame": { "x": 96, "y": 288, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (TwistPush) 0.aseprite": {
+	"frame": { "x": 0, "y": 320, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (TwistPush) 1.aseprite": {
+	"frame": { "x": 32, "y": 320, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (TwistPush) 2.aseprite": {
+	"frame": { "x": 64, "y": 320, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (BackGrappleThrow) 0.aseprite": {
+	"frame": { "x": 0, "y": 352, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (BackGrappleThrow) 1.aseprite": {
+	"frame": { "x": 32, "y": 352, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (BackGrappleThrow) 2.aseprite": {
+	"frame": { "x": 64, "y": 352, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (BackGrappleThrow) 3.aseprite": {
+	"frame": { "x": 96, "y": 352, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Breath) 0.aseprite": {
+	"frame": { "x": 0, "y": 384, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Breath) 1.aseprite": {
+	"frame": { "x": 32, "y": 384, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Runkick) 0.aseprite": {
+	"frame": { "x": 0, "y": 416, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Hurt) 0.aseprite": {
+	"frame": { "x": 0, "y": 448, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (EdgeFall) 0.aseprite": {
+	"frame": { "x": 0, "y": 480, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Mount_kick) 0.aseprite": {
+	"frame": { "x": 0, "y": 512, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Mount_kick) 1.aseprite": {
+	"frame": { "x": 32, "y": 512, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Mount_punch) 0.aseprite": {
+	"frame": { "x": 0, "y": 544, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Mount_punch) 1.aseprite": {
+	"frame": { "x": 32, "y": 544, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Mount_punch) 2.aseprite": {
+	"frame": { "x": 64, "y": 544, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Mount) 0.aseprite": {
+	"frame": { "x": 0, "y": 576, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (TwistedDown) 0.aseprite": {
+	"frame": { "x": 0, "y": 608, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (TwistedDown) 1.aseprite": {
+	"frame": { "x": 32, "y": 608, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (TwistedDown) 2.aseprite": {
+	"frame": { "x": 64, "y": 608, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Lie_Face) 0.aseprite": {
+	"frame": { "x": 0, "y": 640, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Lie_Back) 0.aseprite": {
+	"frame": { "x": 0, "y": 672, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (Grapple) 0.aseprite": {
+	"frame": { "x": 0, "y": 704, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (KneeSlammed_Back) 0.aseprite": {
+	"frame": { "x": 0, "y": 736, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (KneeSlammed_Back) 1.aseprite": {
+	"frame": { "x": 32, "y": 736, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (KneeSlammed_Back) 2.aseprite": {
+	"frame": { "x": 64, "y": 736, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (PushedAway) 0.aseprite": {
+	"frame": { "x": 0, "y": 768, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (PushedAway) 1.aseprite": {
+	"frame": { "x": 32, "y": 768, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   },
+   "ALI (BattleStance) 0.aseprite": {
+	"frame": { "x": 0, "y": 800, "w": 32, "h": 32 },
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+	"sourceSize": { "w": 32, "h": 32 },
+	"duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.12-x64",
+  "image": "ALI.png",
+  "format": "RGBA8888",
+  "size": { "w": 192, "h": 832 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "walk", "opacity": 255, "blendMode": "normal" },
+   { "name": "Run", "opacity": 255, "blendMode": "normal" },
+   { "name": "Punch", "opacity": 255, "blendMode": "normal" },
+   { "name": "kick", "opacity": 255, "blendMode": "normal" },
+   { "name": "Launch", "opacity": 255, "blendMode": "normal" },
+   { "name": "RunPunch", "opacity": 255, "blendMode": "normal" },
+   { "name": "Scroll", "opacity": 255, "blendMode": "normal" },
+   { "name": "jump", "opacity": 255, "blendMode": "normal" },
+   { "name": "FrontGrappleThrow", "opacity": 255, "blendMode": "normal" },
+   { "name": "Lift", "opacity": 255, "blendMode": "normal" },
+   { "name": "TwistPush", "opacity": 255, "blendMode": "normal" },
+   { "name": "BackGrappleThrow", "opacity": 255, "blendMode": "normal" },
+   { "name": "Breath", "opacity": 255, "blendMode": "normal" },
+   { "name": "Runkick", "opacity": 255, "blendMode": "normal" },
+   { "name": "Hurt", "opacity": 255, "blendMode": "normal" },
+   { "name": "EdgeFall", "opacity": 255, "blendMode": "normal" },
+   { "name": "Mount_kick", "opacity": 255, "blendMode": "normal" },
+   { "name": "Mount_punch", "opacity": 255, "blendMode": "normal" },
+   { "name": "Mount", "opacity": 255, "blendMode": "normal" },
+   { "name": "TwistedDown", "opacity": 255, "blendMode": "normal" },
+   { "name": "Lie_Face", "opacity": 255, "blendMode": "normal" },
+   { "name": "Lie_Back", "opacity": 255, "blendMode": "normal" },
+   { "name": "Grapple", "opacity": 255, "blendMode": "normal" },
+   { "name": "KneeSlammed_Back", "opacity": 255, "blendMode": "normal" },
+   { "name": "PushedAway", "opacity": 255, "blendMode": "normal" },
+   { "name": "BattleStance", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}
