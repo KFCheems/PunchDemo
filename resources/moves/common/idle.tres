@@ -1,0 +1,29 @@
+[gd_resource type="Resource" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/schema/move_data.gd" id="1_move"]
+[ext_resource type="Script" path="res://scripts/data/schema/frame_data.gd" id="2_frame"]
+[ext_resource type="Script" path="res://scripts/data/schema/hurtbox_data.gd" id="3_hurtbox"]
+
+[sub_resource type="Resource" id="Hurtbox_default"]
+script = ExtResource("3_hurtbox")
+local_rect = Rect2(-18.0, -56.0, 36.0, 56.0)
+
+[sub_resource type="Resource" id="Frame_idle"]
+script = ExtResource("2_frame")
+display_id = &"idle"
+duration_ticks = 1
+interruptible = true
+cancelable = true
+interrupt_window_start_tick = 0
+interrupt_window_end_tick = 0
+cancel_window_start_tick = 0
+cancel_window_end_tick = 0
+hurtboxes = [SubResource("Hurtbox_default")]
+
+[resource]
+script = ExtResource("1_move")
+move_name = &"idle"
+state_tag = 0
+loop = true
+return_to = &"idle"
+frames = [SubResource("Frame_idle")]

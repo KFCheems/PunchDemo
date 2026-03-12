@@ -1,11 +1,11 @@
 class_name DemoMoveLibrary
 extends RefCounted
 
-const MoveDataResource = preload("res://scripts/data/move_data.gd")
-const FrameDataResource = preload("res://scripts/data/frame_data.gd")
-const HitboxDataResource = preload("res://scripts/data/hitbox_data.gd")
-const HurtboxDataResource = preload("res://scripts/data/hurtbox_data.gd")
-const HitEffectDataResource = preload("res://scripts/data/hit_effect_data.gd")
+const MoveDataResource = preload("res://scripts/data/schema/move_data.gd")
+const FrameDataResource = preload("res://scripts/data/schema/frame_data.gd")
+const HitboxDataResource = preload("res://scripts/data/schema/hitbox_data.gd")
+const HurtboxDataResource = preload("res://scripts/data/schema/hurtbox_data.gd")
+const HitEffectDataResource = preload("res://scripts/data/schema/hit_effect_data.gd")
 const DemoTuningScript = preload("res://scripts/data/demo_tuning.gd")
 const BREATH_FRAME_TICKS := 12
 

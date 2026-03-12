@@ -1,0 +1,60 @@
+[gd_resource type="Resource" load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/schema/move_data.gd" id="1_move"]
+[ext_resource type="Script" path="res://scripts/data/schema/frame_data.gd" id="2_frame"]
+[ext_resource type="Script" path="res://scripts/data/schema/hurtbox_data.gd" id="3_hurtbox"]
+[ext_resource type="Script" path="res://scripts/data/schema/hitbox_data.gd" id="4_hitbox"]
+[ext_resource type="Script" path="res://scripts/data/schema/hit_effect_data.gd" id="5_effect"]
+
+[sub_resource type="Resource" id="Hurtbox_default"]
+script = ExtResource("3_hurtbox")
+local_rect = Rect2(-18.0, -56.0, 36.0, 56.0)
+
+[sub_resource type="Resource" id="Effect_punch"]
+script = ExtResource("5_effect")
+damage = 4
+hitstun_ticks = 16
+knockback_per_tick = Vector2(0.8, 0.0)
+knockback_ticks = 5
+hit_mode = 0
+rehit_interval_ticks = 0
+
+[sub_resource type="Resource" id="Hitbox_punch"]
+script = ExtResource("4_hitbox")
+local_rect = Rect2(10.0, -44.0, 44.0, 42.0)
+effect = SubResource("Effect_punch")
+
+[sub_resource type="Resource" id="Frame_startup"]
+script = ExtResource("2_frame")
+display_id = &"punch_0"
+duration_ticks = 5
+interruptible = false
+cancelable = false
+hurtboxes = [SubResource("Hurtbox_default")]
+
+[sub_resource type="Resource" id="Frame_active"]
+script = ExtResource("2_frame")
+display_id = &"punch_1"
+duration_ticks = 6
+interruptible = false
+cancelable = false
+hurtboxes = [SubResource("Hurtbox_default")]
+hitboxes = [SubResource("Hitbox_punch")]
+
+[sub_resource type="Resource" id="Frame_recovery"]
+script = ExtResource("2_frame")
+display_id = &"punch_2"
+duration_ticks = 7
+interruptible = false
+cancelable = true
+cancel_window_start_tick = 0
+cancel_window_end_tick = 6
+hurtboxes = [SubResource("Hurtbox_default")]
+
+[resource]
+script = ExtResource("1_move")
+move_name = &"punch"
+state_tag = 1
+loop = false
+return_to = &"idle"
+frames = [SubResource("Frame_startup"), SubResource("Frame_active"), SubResource("Frame_recovery")]

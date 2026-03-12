@@ -1,0 +1,78 @@
+[gd_resource type="Resource" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/fighter_definition.gd" id="1_definition"]
+[ext_resource type="Script" path="res://scripts/data/fighter_visual_profile.gd" id="2_visual_profile"]
+[ext_resource type="Texture2D" path="res://assets/sprites/fighters/ali/ali.png" id="3_texture"]
+
+[sub_resource type="Resource" id="VisualProfile_ali"]
+script = ExtResource("2_visual_profile")
+fighter_id = &"ali"
+texture = ExtResource("3_texture")
+atlas_data_path = "res://assets/sprites/fighters/ali/ali_atlas.json"
+display_to_frame_name = {
+"idle": "ALI (walk) 0.aseprite",
+"walk_0": "ALI (walk) 0.aseprite",
+"walk_1": "ALI (walk) 1.aseprite",
+"walk_2": "ALI (walk) 2.aseprite",
+"run_0": "ALI (Run) 0.aseprite",
+"run_1": "ALI (Run) 1.aseprite",
+"run_2": "ALI (Run) 2.aseprite",
+"run_3": "ALI (Run) 3.aseprite",
+"run_4": "ALI (Run) 4.aseprite",
+"run_5": "ALI (Run) 5.aseprite",
+"jump_0": "ALI (jump) 0.aseprite",
+"jump_1": "ALI (jump) 1.aseprite",
+"jump_2": "ALI (jump) 0.aseprite",
+"punch_0": "ALI (Punch) 0.aseprite",
+"punch_1": "ALI (Punch) 1.aseprite",
+"punch_2": "ALI (Punch) 2.aseprite",
+"kick_0": "ALI (kick) 0.aseprite",
+"kick_1": "ALI (kick) 1.aseprite",
+"attack_start": "ALI (Punch) 0.aseprite",
+"attack_hold": "ALI (Punch) 1.aseprite",
+"attack_recover": "ALI (Punch) 2.aseprite",
+"run_punch_0": "ALI (RunPunch) 0.aseprite",
+"run_punch_1": "ALI (RunPunch) 1.aseprite",
+"run_kick_0": "ALI (Runkick) 0.aseprite",
+"launch_0": "ALI (Launch) 0.aseprite",
+"launch_1": "ALI (Launch) 1.aseprite",
+"launch_2": "ALI (Launch) 2.aseprite",
+"grapple_0": "ALI (Grapple) 0.aseprite",
+"grapple_throw_0": "ALI (FrontGrappleThrow) 0.aseprite",
+"grapple_throw_1": "ALI (FrontGrappleThrow) 1.aseprite",
+"grapple_throw_2": "ALI (FrontGrappleThrow) 2.aseprite",
+"grapple_throw_3": "ALI (FrontGrappleThrow) 3.aseprite",
+"grapple_throw_4": "ALI (FrontGrappleThrow) 4.aseprite",
+"grapple_throw_5": "ALI (FrontGrappleThrow) 5.aseprite",
+"front_grapple_punch_0": "ALI (FrontGrappleThrow) 0.aseprite",
+"front_grapple_punch_1": "ALI (FrontGrappleThrow) 1.aseprite",
+"front_grapple_punch_2": "ALI (FrontGrappleThrow) 2.aseprite",
+"front_grapple_punch_3": "ALI (FrontGrappleThrow) 3.aseprite",
+"front_grapple_punch_4": "ALI (FrontGrappleThrow) 4.aseprite",
+"knockdown_0": "ALI (EdgeFall) 0.aseprite",
+"knockdown_1": "ALI (TwistedDown) 0.aseprite",
+"knockdown_2": "ALI (TwistedDown) 1.aseprite",
+"knockdown_3": "ALI (TwistedDown) 2.aseprite",
+"knockdown_4": "ALI (jump) 0.aseprite",
+"hurt": "ALI (Hurt) 0.aseprite",
+"breath_0": "ALI (Breath) 0.aseprite",
+"breath_1": "ALI (Breath) 1.aseprite",
+"breath_invulnerable_0": "ALI (Breath) 0.aseprite",
+"breath_invulnerable_1": "ALI (Breath) 1.aseprite"
+}
+fallback_frame_name = "ALI (walk) 0.aseprite"
+sprite_scale = Vector2(2.0, 2.0)
+sprite_offset = Vector2(0.0, -16.0)
+
+[resource]
+script = ExtResource("1_definition")
+fighter_id = &"ali"
+display_name = "ALI"
+move_resource_map = {
+"idle": "res://resources/moves/common/idle.tres",
+"hurt": "res://resources/moves/common/hurt.tres",
+"jump": "res://resources/moves/common/jump.tres",
+"punch": "res://resources/moves/common/punch.tres",
+"kick": "res://resources/moves/common/kick.tres"
+}
+visual_profile = SubResource("VisualProfile_ali")
