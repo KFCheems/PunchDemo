@@ -16,6 +16,7 @@ var move_library: Dictionary = {}
 var post_hurt_move_name: StringName = &"idle"
 var interaction_target: FighterController = null
 var grab_target: FighterController = null
+var _grab_is_front: bool = false
 var _grabbed_by: FighterController = null
 
 var input_buffer := InputBufferScript.new()
@@ -72,6 +73,7 @@ func reset_for_replay(start_position: Vector2) -> void:
 	facing = default_facing
 	health = max_health
 	grab_target = null
+	_grab_is_front = false
 	_grabbed_by = null
 	knockback_step = Vector2.ZERO
 	knockback_ticks_remaining = 0
@@ -372,12 +374,15 @@ func _process_action_requests() -> void:
 func _resolve_requested_move(action: StringName):
 	if action == &"jump":
 		return move_library.get(&"jump", null)
+	if action == &"punch" and _can_front_grapple_punch():
+		return move_library.get(&"front_grapple_punch", null)
 	if _can_release_grapple_throw() and (action == &"punch" or action == &"kick"):
 		return move_library.get(&"grapple_throw", null)
 	if _can_launch_breath_target() and (action == &"punch" or action == &"kick"):
 		return move_library.get(&"launch", move_library.get(action, null))
 	if action == &"grapple" and _can_grapple_breath_target():
 		grab_target = interaction_target
+		_grab_is_front = _is_front_grab_target(grab_target)
 		return move_library.get(&"grapple", null)
 	if action == &"punch" and _is_run_forward_active():
 		return move_library.get(&"run_punch", move_library.get(action, null))
@@ -397,8 +402,22 @@ func _can_grapple_breath_target() -> bool:
 		return false
 	return global_position.distance_to(interaction_target.global_position) <= DemoTuningScript.POST_HURT_GRAB_TRIGGER_DISTANCE
 
+func _can_front_grapple_punch() -> bool:
+	if not _can_release_grapple_throw():
+		return false
+	return _grab_is_front
+
 func _can_release_grapple_throw() -> bool:
 	return grab_target != null and get_current_move_name() == &"grapple"
+
+func _is_front_grab_target(target: FighterController) -> bool:
+	if target == null:
+		return false
+	var to_target_x: float = target.global_position.x - global_position.x
+	if is_zero_approx(to_target_x):
+		return facing == target.facing
+	var target_side: int = 1 if to_target_x > 0.0 else -1
+	return target_side == facing
 
 func _process_grapple_hold() -> void:
 	if grab_target == null:
@@ -410,6 +429,16 @@ func _process_grapple_hold() -> void:
 	if move_name == &"grapple_throw" and get_frame_index() < 2:
 		grab_target.apply_grabbed_pose(self)
 		return
+	if move_name == &"front_grapple_punch":
+		if get_frame_index() < 2:
+			grab_target.apply_grabbed_pose(self)
+		elif get_frame_index() == 2:
+			grab_target.global_position = global_position + Vector2(float(facing) * DemoTuningScript.GRAPPLE_HOLD_OFFSET_X, 0.0)
+			grab_target.facing = facing
+			grab_target._refresh_visual()
+		else:
+			_release_grab_target(false)
+		return
 	_release_grab_target(move_name != &"grapple_throw")
 	return
 
@@ -418,6 +447,7 @@ func _release_grab_target(_return_to_idle: bool) -> void:
 		return
 	var released_target: FighterController = grab_target
 	grab_target = null
+	_grab_is_front = false
 	released_target.release_from_grab(_return_to_idle)
 	if _return_to_idle and get_current_move_name() != &"idle":
 		_start_named_move(&"idle")

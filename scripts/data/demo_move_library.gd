@@ -22,6 +22,8 @@ static func create_library() -> Dictionary:
 		&"launch": build_launch_move(),
 		&"grapple": build_grapple_move(),
 		&"grapple_throw": build_grapple_throw_move(),
+		&"front_grapple_punch": build_front_grapple_punch_move(),
+		&"knockdown": build_knockdown_move(),
 		&"breath": build_breath_move(),
 		&"breath_invulnerable": build_breath_invulnerable_move(),
 		&"attack_single": build_attack_move(&"attack_single", HitEffectDataResource.HitMode.SINGLE, 0),
@@ -219,6 +221,76 @@ static func build_grapple_throw_move():
 	move.loop = false
 	move.return_to = &"idle"
 	move.frames = [startup_a, startup_b, active] + recovery_frames
+	return move
+
+static func build_front_grapple_punch_move():
+	var hurtbox = _make_default_hurtbox()
+
+	var startup_a = FrameDataResource.new()
+	startup_a.display_id = &"front_grapple_punch_0"
+	startup_a.duration_ticks = 4
+	startup_a.interruptible = false
+	startup_a.cancelable = false
+	startup_a.hurtboxes = [hurtbox]
+
+	var startup_b = FrameDataResource.new()
+	startup_b.display_id = &"front_grapple_punch_1"
+	startup_b.duration_ticks = 4
+	startup_b.interruptible = false
+	startup_b.cancelable = false
+	startup_b.hurtboxes = [hurtbox]
+
+	var first_hit = FrameDataResource.new()
+	first_hit.display_id = &"front_grapple_punch_2"
+	first_hit.duration_ticks = 3
+	first_hit.interruptible = false
+	first_hit.cancelable = false
+	first_hit.hurtboxes = [hurtbox]
+	first_hit.hitboxes = [_make_configured_attack_hitbox(DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_HITBOX_POSITION, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_HITBOX_SIZE, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_FIRST_DAMAGE, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_FIRST_HITSTUN_TICKS, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_FIRST_KNOCKBACK_PER_TICK, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_FIRST_KNOCKBACK_TICKS, HitEffectDataResource.HitMode.MULTI, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_REHIT_INTERVAL_TICKS)]
+
+	var second_hit = FrameDataResource.new()
+	second_hit.display_id = &"front_grapple_punch_3"
+	second_hit.duration_ticks = 4
+	second_hit.interruptible = false
+	second_hit.cancelable = false
+	second_hit.hurtboxes = [hurtbox]
+	second_hit.hitboxes = [_make_configured_attack_hitbox(DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_HITBOX_POSITION, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_HITBOX_SIZE, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_SECOND_DAMAGE, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_SECOND_HITSTUN_TICKS, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_SECOND_KNOCKBACK_PER_TICK, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_SECOND_KNOCKBACK_TICKS, HitEffectDataResource.HitMode.MULTI, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_REHIT_INTERVAL_TICKS, &"knockdown")]
+
+	var recovery = FrameDataResource.new()
+	recovery.display_id = &"front_grapple_punch_3"
+	recovery.duration_ticks = 6
+	recovery.interruptible = false
+	recovery.cancelable = false
+	recovery.hurtboxes = [hurtbox]
+
+	var move = MoveDataResource.new()
+	move.move_name = &"front_grapple_punch"
+	move.state_tag = MoveDataResource.StateTag.ATTACK
+	move.loop = false
+	move.return_to = &"idle"
+	move.frames = [startup_a, startup_b, first_hit, second_hit, recovery]
+	return move
+
+static func build_knockdown_move():
+	var hurtbox = _make_default_hurtbox()
+	var frames: Array = []
+	var displays: Array[StringName] = [&"knockdown_0", &"knockdown_1", &"knockdown_2", &"knockdown_3", &"knockdown_3", &"knockdown_4"]
+	var durations: Array[int] = [DemoTuningScript.KNOCKDOWN_EDGE_FALL_TICKS, DemoTuningScript.KNOCKDOWN_TWISTED_DOWN_A_TICKS, DemoTuningScript.KNOCKDOWN_TWISTED_DOWN_B_TICKS, DemoTuningScript.KNOCKDOWN_TWISTED_DOWN_C_TICKS, DemoTuningScript.KNOCKDOWN_GROUNDED_HOLD_TICKS, DemoTuningScript.KNOCKDOWN_GETUP_CROUCH_TICKS]
+	for index in range(displays.size()):
+		var frame = FrameDataResource.new()
+		frame.display_id = displays[index]
+		frame.duration_ticks = durations[index]
+		frame.interruptible = false
+		frame.cancelable = false
+		frame.hurtboxes = [hurtbox]
+		frames.append(frame)
+
+	var move = MoveDataResource.new()
+	move.move_name = &"knockdown"
+	move.state_tag = MoveDataResource.StateTag.HURT
+	move.loop = false
+	move.return_to = &"idle"
+	move.frames = frames
 	return move
 
 static func build_jump_move():
