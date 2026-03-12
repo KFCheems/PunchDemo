@@ -39,7 +39,6 @@ var jump_velocity_per_tick: float = DemoTuningScript.JUMP_TAKEOFF_VELOCITY_PER_T
 var jump_gravity_per_tick: float = DemoTuningScript.JUMP_GRAVITY_PER_TICK
 var _manual_single_attack_pressed_last_tick: bool = false
 var _manual_multi_attack_pressed_last_tick: bool = false
-var _manual_grapple_pressed_last_tick: bool = false
 var _manual_jump_pressed_last_tick: bool = false
 var _buffered_left_pressed_last_tick: bool = false
 var _buffered_right_pressed_last_tick: bool = false
@@ -86,7 +85,6 @@ func reset_for_replay(start_position: Vector2) -> void:
 	buffered_movement_enabled = false
 	_manual_single_attack_pressed_last_tick = false
 	_manual_multi_attack_pressed_last_tick = false
-	_manual_grapple_pressed_last_tick = false
 	_manual_jump_pressed_last_tick = false
 	_buffered_left_pressed_last_tick = false
 	_buffered_right_pressed_last_tick = false
@@ -111,6 +109,7 @@ func start_combat_tick(combat_tick: int) -> void:
 	_process_manual_attack(combat_tick)
 	_process_manual_jump(combat_tick)
 	_queue_manual_movement_actions(combat_tick)
+	_process_auto_grapple(combat_tick)
 	input_buffer.begin_tick(combat_tick)
 	_sync_buffered_movement_state(combat_tick)
 	_apply_knockback()
@@ -210,21 +209,15 @@ func _process_manual_attack(combat_tick: int) -> void:
 	if not manual_movement_enabled:
 		_manual_single_attack_pressed_last_tick = false
 		_manual_multi_attack_pressed_last_tick = false
-		_manual_grapple_pressed_last_tick = false
 		return
 	var single_attack_pressed: bool = Input.is_physical_key_pressed(KEY_J)
 	var multi_attack_pressed: bool = Input.is_physical_key_pressed(KEY_K) or Input.is_physical_key_pressed(KEY_ENTER)
-	var grapple_pressed: bool = Input.is_physical_key_pressed(KEY_L)
-	if grapple_pressed and _can_grapple_breath_target():
-		if not _manual_grapple_pressed_last_tick:
-			input_buffer.schedule_action(combat_tick, &"grapple")
-	elif single_attack_pressed and not _manual_single_attack_pressed_last_tick:
+	if single_attack_pressed and not _manual_single_attack_pressed_last_tick:
 		input_buffer.schedule_action(combat_tick, &"punch")
 	elif multi_attack_pressed and not _manual_multi_attack_pressed_last_tick:
 		input_buffer.schedule_action(combat_tick, &"kick")
 	_manual_single_attack_pressed_last_tick = single_attack_pressed
 	_manual_multi_attack_pressed_last_tick = multi_attack_pressed
-	_manual_grapple_pressed_last_tick = grapple_pressed
 
 func _process_manual_jump(combat_tick: int) -> void:
 	if not manual_movement_enabled:
@@ -407,6 +400,13 @@ func _can_front_grapple_punch() -> bool:
 		return false
 	return _grab_is_front
 
+func _can_auto_grapple_breath_target() -> bool:
+	if not _can_grapple_breath_target():
+		return false
+	if grab_target != null:
+		return false
+	return get_current_move_name() == &"idle" or get_current_move_name() == &"walk" or get_current_move_name() == &"run"
+
 func _can_release_grapple_throw() -> bool:
 	return grab_target != null and get_current_move_name() == &"grapple"
 
@@ -441,6 +441,11 @@ func _process_grapple_hold() -> void:
 		return
 	_release_grab_target(move_name != &"grapple_throw")
 	return
+
+func _process_auto_grapple(combat_tick: int) -> void:
+	if not _can_auto_grapple_breath_target():
+		return
+	input_buffer.schedule_action(combat_tick, &"grapple")
 
 func _release_grab_target(_return_to_idle: bool) -> void:
 	if grab_target == null:

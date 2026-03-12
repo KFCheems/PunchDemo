@@ -354,13 +354,13 @@ func _update_status_label(show_complete: bool) -> void:
 		else:
 			lines.append("Manual demo active. Press R to run replay validation.")
 			lines.append("Replay validation checks single-hit, deterministic replay, and multi-hit.")
-		lines.append("Controls: WASD or arrows move, Space jump, J punch, K/Enter kick, L grapple, R replay, T live replay.")
+		lines.append("Controls: WASD or arrows move, Space jump, J punch, K/Enter kick, R replay, T live replay.")
 		lines.append("Movement: double-tap left/right to enter Run.")
 		lines.append("Depth: W/S or Up/Down moves along the vertical lane.")
 		lines.append("Debug panel: press F1 to show/hide this text panel.")
 		lines.append("Sprint attacks: while running, J for run punch and K for run kick.")
 		lines.append("Recovery cancel: press attack again during recovery to chain into a new attack.")
-		lines.append("Breath follow-up: hit a breathing dummy with J/K to launch, or press L nearby to grapple.")
+		lines.append("Breath follow-up: move close to a breathing dummy to auto grapple, or press J/K to launch.")
 		if last_live_input_script.is_empty():
 			lines.append("Live input replay: no recorded manual input yet.")
 		else:
