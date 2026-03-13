@@ -9,7 +9,8 @@ func process_action_requests(controller) -> void:
 		if not controller.state_machine.can_start_move(controller.move_runner.current_move, controller.move_runner.get_current_frame(), controller.move_runner.ticks_into_frame, requested_move):
 			continue
 		if controller.input_buffer.consume_action(action):
-			controller._start_move(requested_move)
+			_prepare_move_start(controller, action, requested_move)
+			start_move(controller, requested_move)
 			return
 
 func resolve_requested_move(controller, action: StringName):
@@ -22,14 +23,20 @@ func resolve_requested_move(controller, action: StringName):
 	if controller.grab_logic.can_launch_breath_target(controller) and (action == &"punch" or action == &"kick"):
 		return controller.move_library.get(&"launch", controller.move_library.get(action, null))
 	if action == &"grapple" and controller.grab_logic.can_grapple_breath_target(controller):
-		controller.grab_target = controller.interaction_target
-		controller._grab_is_front = controller.grab_logic.is_front_grab_target(controller, controller.grab_target)
 		return controller.move_library.get(&"grapple", null)
-	if action == &"punch" and controller._is_run_forward_active():
+	if action == &"punch" and controller.input_logic.is_run_forward_active(controller):
 		return controller.move_library.get(&"run_punch", controller.move_library.get(action, null))
-	if action == &"kick" and controller._is_run_forward_active():
+	if action == &"kick" and controller.input_logic.is_run_forward_active(controller):
 		return controller.move_library.get(&"run_kick", controller.move_library.get(action, null))
 	return controller.move_library.get(action, null)
+
+func _prepare_move_start(controller, action: StringName, move) -> void:
+	if move == null:
+		return
+	if action != &"grapple" or move.move_name != &"grapple":
+		return
+	controller.grab_target = controller.interaction_target
+	controller._grab_is_front = controller.grab_logic.is_front_grab_target(controller, controller.grab_target)
 
 func receive_hit(controller, effect, attacker) -> void:
 	if controller.move_runner.current_move != null and controller.move_runner.current_move.invulnerable:
@@ -39,13 +46,36 @@ func receive_hit(controller, effect, attacker) -> void:
 	var direction: int = int(sign(controller.global_position.x - attacker.global_position.x))
 	if direction == 0:
 		direction = attacker.facing
-	controller.knockback_step = Vector2(effect.knockback_per_tick.x * direction, effect.knockback_per_tick.y)
-	controller.knockback_ticks_remaining = effect.knockback_ticks
+	controller.runtime_state.knockback_step = Vector2(effect.knockback_per_tick.x * direction, effect.knockback_per_tick.y)
+	controller.runtime_state.knockback_ticks_remaining = effect.knockback_ticks
 	controller.stats_logic.apply_hit_state_reset(controller)
 	var hurt_move = _build_hurt_move(controller, effect.hitstun_ticks)
-	hurt_move.return_to = effect.get_return_move_name(controller.post_hurt_move_name)
-	controller._start_move(hurt_move)
+	if hurt_move == null:
+		hurt_move = controller.move_library.get(&"idle", null)
+	if hurt_move != null:
+		hurt_move.return_to = effect.get_return_move_name(controller.post_hurt_move_name)
+		start_move(controller, hurt_move)
 	controller._refresh_visual()
+
+func start_named_move(controller, move_name: StringName) -> void:
+	var next_move = controller.move_library.get(move_name, null)
+	if next_move == null and controller.move_library.has(&"idle"):
+		next_move = controller.move_library[&"idle"]
+	if next_move == null:
+		return
+	start_move(controller, next_move)
+
+func start_move(controller, move) -> void:
+	if move != null and move.move_name == &"jump":
+		var horizontal_input: int = controller.input_logic.get_horizontal_input(controller)
+		controller.runtime_state.is_jumping = true
+		controller.runtime_state.jump_vertical_velocity = controller.jump_velocity_per_tick
+		controller.runtime_state.jump_horizontal_velocity = controller.motor_logic.resolve_jump_horizontal_velocity(controller, horizontal_input)
+		if horizontal_input != 0:
+			controller.facing = horizontal_input
+		controller.runtime_state.run_direction = 0
+	controller.move_runner.start_move(move)
+	controller.state_machine.sync_from_move(move)
 
 func _build_hurt_move(controller, hitstun_ticks: int):
 	var data_manager = controller.get_node_or_null("/root/DataManager")

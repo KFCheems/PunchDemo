@@ -23,7 +23,8 @@ func can_auto_grapple_breath_target(controller) -> bool:
 		return false
 	if controller.grab_target != null:
 		return false
-	return controller.get_current_move_name() == &"idle" or controller.get_current_move_name() == &"walk" or controller.get_current_move_name() == &"run"
+	var move_name: StringName = controller.get_current_move_name()
+	return move_name == &"idle" or move_name == &"walk" or move_name == &"run"
 
 func can_release_grapple_throw(controller) -> bool:
 	return controller.grab_target != null and controller.get_current_move_name() == &"grapple"
@@ -48,22 +49,24 @@ func process_auto_grapple(controller, combat_tick: int) -> void:
 	controller.input_buffer.schedule_action(combat_tick, &"grapple")
 
 func process_grapple_hold(controller) -> void:
-	if controller.grab_target == null:
+	var target = controller.grab_target
+	if target == null:
 		return
 	var move_name: StringName = controller.get_current_move_name()
 	if move_name == &"grapple":
-		controller.grab_target.apply_grabbed_pose(controller)
+		target.apply_grabbed_pose(controller)
 		return
-	if move_name == &"grapple_throw" and controller.get_frame_index() < 2:
-		controller.grab_target.apply_grabbed_pose(controller)
+	var frame_index: int = controller.get_frame_index()
+	if move_name == &"grapple_throw" and frame_index < 2:
+		target.apply_grabbed_pose(controller)
 		return
 	if move_name == &"front_grapple_punch":
-		if controller.get_frame_index() < 2:
-			controller.grab_target.apply_grabbed_pose(controller)
-		elif controller.get_frame_index() == 2:
-			controller.grab_target.global_position = controller.global_position + Vector2(float(controller.facing) * controller.DemoTuningScript.GRAPPLE_HOLD_OFFSET_X, 0.0)
-			controller.grab_target.facing = controller.facing
-			controller.grab_target._refresh_visual()
+		if frame_index < 2:
+			target.apply_grabbed_pose(controller)
+		elif frame_index == 2:
+			target.global_position = controller.global_position + Vector2(float(controller.facing) * controller.DemoTuningScript.GRAPPLE_HOLD_OFFSET_X, 0.0)
+			target.facing = controller.facing
+			target._refresh_visual()
 		else:
 			release_grab_target(controller, false)
 		return
@@ -77,34 +80,25 @@ func release_grab_target(controller, return_to_idle: bool) -> void:
 	controller._grab_is_front = false
 	released_target.release_from_grab(return_to_idle)
 	if return_to_idle and controller.get_current_move_name() != &"idle":
-		controller._start_named_move(&"idle")
+		controller.combat_logic.start_named_move(controller,&"idle")
 
 func apply_grabbed_pose(controller, holder) -> void:
 	if holder == null:
 		return
-	controller._grabbed_by = holder
-	controller.knockback_step = Vector2.ZERO
-	controller.knockback_ticks_remaining = 0
-	controller._is_jumping = false
-	controller._is_jump_landing = false
-	controller._jump_visual_offset_y = 0.0
-	controller._jump_vertical_velocity = 0.0
-	controller._jump_horizontal_velocity = 0.0
+	if controller.runtime_state.grabbed_by != holder:
+		controller.runtime_state.grabbed_by = holder
+		controller.runtime_state.clear_knockback()
+		controller.runtime_state.clear_jump_state()
 	controller.global_position = holder.global_position + Vector2(float(holder.facing) * controller.DemoTuningScript.GRAPPLE_HOLD_OFFSET_X, 0.0)
 	controller._refresh_visual()
 
 func release_from_grab(controller, return_to_idle: bool = true) -> void:
-	controller._grabbed_by = null
-	controller.knockback_step = Vector2.ZERO
-	controller.knockback_ticks_remaining = 0
-	controller._is_jumping = false
-	controller._is_jump_landing = false
-	controller._jump_visual_offset_y = 0.0
-	controller._jump_vertical_velocity = 0.0
-	controller._jump_horizontal_velocity = 0.0
+	controller.runtime_state.grabbed_by = null
+	controller.runtime_state.clear_knockback()
+	controller.runtime_state.clear_jump_state()
 	if return_to_idle:
 		if controller.get_current_move_name() == &"breath":
-			controller._start_named_move(&"breath_invulnerable")
+			controller.combat_logic.start_named_move(controller,&"breath_invulnerable")
 		elif controller.get_current_move_name() != &"idle":
-			controller._start_named_move(&"idle")
+			controller.combat_logic.start_named_move(controller,&"idle")
 	controller._refresh_visual()
