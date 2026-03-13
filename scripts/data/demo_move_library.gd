@@ -17,13 +17,17 @@ static func create_library() -> Dictionary:
 		&"jump": build_jump_move(),
 		&"punch": build_punch_move(),
 		&"kick": build_kick_move(),
+		&"jump_punch": build_jump_punch_move(),
+		&"jump_kick": build_jump_kick_move(),
 		&"run_punch": build_run_punch_move(),
 		&"run_kick": build_run_kick_move(),
 		&"launch": build_launch_move(),
 		&"grapple": build_grapple_move(),
 		&"grapple_throw": build_grapple_throw_move(),
 		&"front_grapple_punch": build_front_grapple_punch_move(),
-		&"knockdown": build_knockdown_move(),
+		&"knockdown_fall": build_knockdown_fall_move(),
+		&"knockdown_downed": build_knockdown_downed_move(),
+		&"knockdown_getup": build_knockdown_getup_move(),
 		&"breath": build_breath_move(),
 		&"breath_invulnerable": build_breath_invulnerable_move(),
 		&"attack_single": build_attack_move(&"attack_single", HitEffectDataResource.HitMode.SINGLE, 0),
@@ -254,7 +258,7 @@ static func build_front_grapple_punch_move():
 	second_hit.interruptible = false
 	second_hit.cancelable = false
 	second_hit.hurtboxes = [hurtbox]
-	second_hit.hitboxes = [_make_configured_attack_hitbox(DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_HITBOX_POSITION, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_HITBOX_SIZE, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_SECOND_DAMAGE, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_SECOND_HITSTUN_TICKS, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_SECOND_KNOCKBACK_PER_TICK, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_SECOND_KNOCKBACK_TICKS, HitEffectDataResource.HitMode.MULTI, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_REHIT_INTERVAL_TICKS, &"knockdown")]
+	second_hit.hitboxes = [_make_configured_attack_hitbox(DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_HITBOX_POSITION, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_HITBOX_SIZE, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_SECOND_DAMAGE, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_SECOND_HITSTUN_TICKS, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_SECOND_KNOCKBACK_PER_TICK, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_SECOND_KNOCKBACK_TICKS, HitEffectDataResource.HitMode.MULTI, DemoTuningScript.ATTACK_FRONT_GRAPPLE_PUNCH_REHIT_INTERVAL_TICKS, &"knockdown_fall")]
 
 	var recovery = FrameDataResource.new()
 	recovery.display_id = &"front_grapple_punch_3"
@@ -271,26 +275,68 @@ static func build_front_grapple_punch_move():
 	move.frames = [startup_a, startup_b, first_hit, second_hit, recovery]
 	return move
 
-static func build_knockdown_move():
+static func build_knockdown_fall_move():
 	var hurtbox = _make_default_hurtbox()
+	var grounded_hurtbox = _make_grounded_knockdown_hurtbox()
 	var frames: Array = []
-	var displays: Array[StringName] = [&"knockdown_0", &"knockdown_1", &"knockdown_2", &"knockdown_3", &"knockdown_3", &"knockdown_4"]
-	var durations: Array[int] = [DemoTuningScript.KNOCKDOWN_EDGE_FALL_TICKS, DemoTuningScript.KNOCKDOWN_TWISTED_DOWN_A_TICKS, DemoTuningScript.KNOCKDOWN_TWISTED_DOWN_B_TICKS, DemoTuningScript.KNOCKDOWN_TWISTED_DOWN_C_TICKS, DemoTuningScript.KNOCKDOWN_GROUNDED_HOLD_TICKS, DemoTuningScript.KNOCKDOWN_GETUP_CROUCH_TICKS]
+	var displays: Array[StringName] = [&"knockdown_0", &"knockdown_1", &"knockdown_2", &"knockdown_3"]
+	var durations: Array[int] = [DemoTuningScript.KNOCKDOWN_EDGE_FALL_TICKS, DemoTuningScript.KNOCKDOWN_TWISTED_DOWN_A_TICKS, DemoTuningScript.KNOCKDOWN_TWISTED_DOWN_B_TICKS, DemoTuningScript.KNOCKDOWN_TWISTED_DOWN_C_TICKS]
 	for index in range(displays.size()):
 		var frame = FrameDataResource.new()
 		frame.display_id = displays[index]
 		frame.duration_ticks = durations[index]
 		frame.interruptible = false
 		frame.cancelable = false
-		frame.hurtboxes = [hurtbox]
+		frame.hurtboxes = [grounded_hurtbox] if index == displays.size() - 1 else [hurtbox]
 		frames.append(frame)
 
 	var move = MoveDataResource.new()
-	move.move_name = &"knockdown"
+	move.move_name = &"knockdown_fall"
+	move.state_tag = MoveDataResource.StateTag.HURT
+	move.loop = false
+	move.return_to = &"knockdown_downed"
+	move.frames = frames
+	return move
+
+static func build_knockdown_downed_move():
+	var frame = FrameDataResource.new()
+	frame.display_id = &"knockdown_3"
+	frame.duration_ticks = DemoTuningScript.KNOCKDOWN_GROUNDED_HOLD_TICKS
+	frame.interruptible = false
+	frame.cancelable = false
+	frame.hurtboxes = [_make_grounded_knockdown_hurtbox()]
+
+	var move = MoveDataResource.new()
+	move.move_name = &"knockdown_downed"
+	move.state_tag = MoveDataResource.StateTag.HURT
+	move.loop = false
+	move.return_to = &"knockdown_getup"
+	move.frames = [frame]
+	return move
+
+static func build_knockdown_getup_move():
+	var grounded_hurtbox = _make_grounded_knockdown_hurtbox()
+	var standing_hurtbox = _make_default_hurtbox()
+	var crouch_frame = FrameDataResource.new()
+	crouch_frame.display_id = &"knockdown_4"
+	crouch_frame.duration_ticks = max(DemoTuningScript.KNOCKDOWN_GETUP_CROUCH_TICKS - 1, 1)
+	crouch_frame.interruptible = false
+	crouch_frame.cancelable = false
+	crouch_frame.hurtboxes = [grounded_hurtbox]
+
+	var rise_frame = FrameDataResource.new()
+	rise_frame.display_id = &"knockdown_4"
+	rise_frame.duration_ticks = 1
+	rise_frame.interruptible = false
+	rise_frame.cancelable = false
+	rise_frame.hurtboxes = [standing_hurtbox]
+
+	var move = MoveDataResource.new()
+	move.move_name = &"knockdown_getup"
 	move.state_tag = MoveDataResource.StateTag.HURT
 	move.loop = false
 	move.return_to = &"idle"
-	move.frames = frames
+	move.frames = [crouch_frame, rise_frame]
 	return move
 
 static func build_jump_move():
@@ -412,6 +458,72 @@ static func build_kick_move():
 	move.state_tag = MoveDataResource.StateTag.ATTACK
 	move.loop = false
 	move.return_to = &"idle"
+	move.frames = [startup, active, recovery]
+	return move
+
+static func build_jump_punch_move():
+	var hurtbox = _make_default_hurtbox()
+
+	var startup = FrameDataResource.new()
+	startup.display_id = &"jump_punch_0"
+	startup.duration_ticks = DemoTuningScript.ATTACK_JUMP_PUNCH_STARTUP_TICKS
+	startup.interruptible = false
+	startup.cancelable = false
+	startup.hurtboxes = [hurtbox]
+
+	var active = FrameDataResource.new()
+	active.display_id = &"jump_punch_1"
+	active.duration_ticks = DemoTuningScript.ATTACK_JUMP_PUNCH_ACTIVE_TICKS
+	active.interruptible = false
+	active.cancelable = false
+	active.hurtboxes = [hurtbox]
+	active.hitboxes = [_make_configured_attack_hitbox(DemoTuningScript.ATTACK_JUMP_PUNCH_HITBOX_POSITION, DemoTuningScript.ATTACK_JUMP_PUNCH_HITBOX_SIZE, DemoTuningScript.ATTACK_JUMP_PUNCH_DAMAGE, DemoTuningScript.ATTACK_JUMP_PUNCH_HITSTUN_TICKS, DemoTuningScript.ATTACK_JUMP_PUNCH_KNOCKBACK_PER_TICK, DemoTuningScript.ATTACK_JUMP_PUNCH_KNOCKBACK_TICKS, HitEffectDataResource.HitMode.SINGLE, 0)]
+
+	var recovery = FrameDataResource.new()
+	recovery.display_id = &"jump_punch_2"
+	recovery.duration_ticks = DemoTuningScript.ATTACK_JUMP_PUNCH_RECOVERY_TICKS
+	recovery.interruptible = false
+	recovery.cancelable = false
+	recovery.hurtboxes = [hurtbox]
+
+	var move = MoveDataResource.new()
+	move.move_name = &"jump_punch"
+	move.state_tag = MoveDataResource.StateTag.AIR
+	move.loop = false
+	move.return_to = &"jump"
+	move.frames = [startup, active, recovery]
+	return move
+
+static func build_jump_kick_move():
+	var hurtbox = _make_default_hurtbox()
+
+	var startup = FrameDataResource.new()
+	startup.display_id = &"jump_kick_0"
+	startup.duration_ticks = DemoTuningScript.ATTACK_JUMP_KICK_STARTUP_TICKS
+	startup.interruptible = false
+	startup.cancelable = false
+	startup.hurtboxes = [hurtbox]
+
+	var active = FrameDataResource.new()
+	active.display_id = &"jump_kick_1"
+	active.duration_ticks = DemoTuningScript.ATTACK_JUMP_KICK_ACTIVE_TICKS
+	active.interruptible = false
+	active.cancelable = false
+	active.hurtboxes = [hurtbox]
+	active.hitboxes = [_make_configured_attack_hitbox(DemoTuningScript.ATTACK_JUMP_KICK_HITBOX_POSITION, DemoTuningScript.ATTACK_JUMP_KICK_HITBOX_SIZE, DemoTuningScript.ATTACK_JUMP_KICK_DAMAGE, DemoTuningScript.ATTACK_JUMP_KICK_HITSTUN_TICKS, DemoTuningScript.ATTACK_JUMP_KICK_KNOCKBACK_PER_TICK, DemoTuningScript.ATTACK_JUMP_KICK_KNOCKBACK_TICKS, HitEffectDataResource.HitMode.SINGLE, 0)]
+
+	var recovery = FrameDataResource.new()
+	recovery.display_id = &"jump_kick_2"
+	recovery.duration_ticks = DemoTuningScript.ATTACK_JUMP_KICK_RECOVERY_TICKS
+	recovery.interruptible = false
+	recovery.cancelable = false
+	recovery.hurtboxes = [hurtbox]
+
+	var move = MoveDataResource.new()
+	move.move_name = &"jump_kick"
+	move.state_tag = MoveDataResource.StateTag.AIR
+	move.loop = false
+	move.return_to = &"jump"
 	move.frames = [startup, active, recovery]
 	return move
 
@@ -566,4 +678,9 @@ static func _build_repeated_display_frames(display_ids: Array, total_ticks: int,
 static func _make_default_hurtbox():
 	var hurtbox = HurtboxDataResource.new()
 	hurtbox.local_rect = Rect2(DemoTuningScript.HURTBOX_DEFAULT_POSITION, DemoTuningScript.HURTBOX_DEFAULT_SIZE)
+	return hurtbox
+
+static func _make_grounded_knockdown_hurtbox():
+	var hurtbox = HurtboxDataResource.new()
+	hurtbox.local_rect = Rect2(DemoTuningScript.HURTBOX_GROUNDED_KNOCKDOWN_POSITION, DemoTuningScript.HURTBOX_GROUNDED_KNOCKDOWN_SIZE)
 	return hurtbox

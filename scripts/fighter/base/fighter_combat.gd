@@ -16,6 +16,11 @@ func process_action_requests(controller) -> void:
 func resolve_requested_move(controller, action: StringName):
 	if action == &"jump":
 		return controller.move_library.get(&"jump", null)
+	if controller.runtime_state.is_jumping and not controller.runtime_state.air_attack_used:
+		if action == &"punch":
+			return controller.move_library.get(&"jump_punch", controller.move_library.get(action, null))
+		if action == &"kick":
+			return controller.move_library.get(&"jump_kick", controller.move_library.get(action, null))
 	if action == &"punch" and controller.grab_logic.can_front_grapple_punch(controller):
 		return controller.move_library.get(&"front_grapple_punch", null)
 	if controller.grab_logic.can_release_grapple_throw(controller) and (action == &"punch" or action == &"kick"):
@@ -33,6 +38,8 @@ func resolve_requested_move(controller, action: StringName):
 func _prepare_move_start(controller, action: StringName, move) -> void:
 	if move == null:
 		return
+	if move.move_name == &"jump_punch" or move.move_name == &"jump_kick":
+		controller.runtime_state.air_attack_used = true
 	if action != &"grapple" or move.move_name != &"grapple":
 		return
 	controller.grab_target = controller.interaction_target
@@ -69,6 +76,7 @@ func start_move(controller, move) -> void:
 	if move != null and move.move_name == &"jump":
 		var horizontal_input: int = controller.input_logic.get_horizontal_input(controller)
 		controller.runtime_state.is_jumping = true
+		controller.runtime_state.air_attack_used = false
 		controller.runtime_state.jump_vertical_velocity = controller.jump_velocity_per_tick
 		controller.runtime_state.jump_horizontal_velocity = controller.motor_logic.resolve_jump_horizontal_velocity(controller, horizontal_input)
 		if horizontal_input != 0:

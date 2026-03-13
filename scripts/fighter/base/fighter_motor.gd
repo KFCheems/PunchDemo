@@ -27,6 +27,7 @@ func process_jump_motion(controller) -> void:
 		controller.runtime_state.jump_vertical_velocity = 0.0
 		controller.runtime_state.jump_horizontal_velocity = 0.0
 		controller.runtime_state.is_jumping = false
+		controller.runtime_state.air_attack_used = false
 		enter_jump_landing_frame(controller)
 
 func process_airborne_control(controller) -> void:
@@ -88,11 +89,15 @@ func resolve_jump_horizontal_velocity(controller, horizontal_input: int) -> floa
 	return float(horizontal_input) * controller.manual_move_speed_per_tick
 
 func enter_jump_landing_frame(controller) -> void:
-	if controller.get_current_move_name() != &"jump":
+	var current_move_name: StringName = controller.get_current_move_name()
+	if current_move_name != &"jump" and current_move_name != &"jump_punch" and current_move_name != &"jump_kick":
 		return
-	if controller.move_runner.current_move == null:
+	var jump_move = controller.move_library.get(&"jump", null)
+	if jump_move == null:
 		return
-	if controller.move_runner.current_move.frames.size() < 3:
+	if jump_move.frames.size() < 3:
 		return
+	controller.move_runner.start_move(jump_move)
 	controller.move_runner.current_frame_index = 2
 	controller.move_runner.ticks_into_frame = 0
+	controller.state_machine.sync_from_move(jump_move)

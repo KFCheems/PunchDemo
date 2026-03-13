@@ -17,6 +17,7 @@ var jump_visual_offset_y: float = 0.0
 var jump_vertical_velocity: float = 0.0
 var jump_horizontal_velocity: float = 0.0
 var is_jumping: bool = false
+var air_attack_used: bool = false
 var grabbed_by = null
 
 func reset() -> void:
@@ -35,6 +36,7 @@ func clear_jump_state() -> void:
 	jump_vertical_velocity = 0.0
 	jump_horizontal_velocity = 0.0
 	is_jumping = false
+	air_attack_used = false
 
 func clear_run_state() -> void:
 	run_direction = 0

@@ -11,6 +11,11 @@ const COMMON_MOVE_RESOURCE_PATHS := {
 	"jump": "res://resources/moves/common/jump.tres",
 	"punch": "res://resources/moves/common/punch.tres",
 	"kick": "res://resources/moves/common/kick.tres",
+	"jump_punch": "res://resources/moves/common/jump_punch.tres",
+	"jump_kick": "res://resources/moves/common/jump_kick.tres",
+	"knockdown_fall": "res://resources/moves/common/knockdown_fall.tres",
+	"knockdown_downed": "res://resources/moves/common/knockdown_downed.tres",
+	"knockdown_getup": "res://resources/moves/common/knockdown_getup.tres",
 }
 
 var _fighter_definitions: Dictionary = {}
@@ -115,6 +120,12 @@ func _build_ali_definition():
 		"jump_0": "ALI (jump) 0.aseprite",
 		"jump_1": "ALI (jump) 1.aseprite",
 		"jump_2": "ALI (jump) 0.aseprite",
+		"jump_punch_0": "ALI (Punch) 0.aseprite",
+		"jump_punch_1": "ALI (Punch) 1.aseprite",
+		"jump_punch_2": "ALI (Punch) 2.aseprite",
+		"jump_kick_0": "ALI (kick) 0.aseprite",
+		"jump_kick_1": "ALI (kick) 1.aseprite",
+		"jump_kick_2": "ALI (kick) 1.aseprite",
 		"punch_0": "ALI (Punch) 0.aseprite",
 		"punch_1": "ALI (Punch) 1.aseprite",
 		"punch_2": "ALI (Punch) 2.aseprite",

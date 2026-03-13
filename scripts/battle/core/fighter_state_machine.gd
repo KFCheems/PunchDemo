@@ -20,7 +20,7 @@ func can_start_move(current_move: MoveData, current_frame: FrameData, ticks_into
 	if requested_move.state_tag == MoveData.StateTag.HURT:
 		return true
 	if current_move.state_tag == MoveData.StateTag.AIR:
-		return false
+		return current_move.move_name == &"jump" and (requested_move.move_name == &"jump_punch" or requested_move.move_name == &"jump_kick")
 	if current_move.state_tag == MoveData.StateTag.IDLE:
 		return true
 	if current_frame == null:
