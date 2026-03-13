@@ -1,0 +1,6 @@
+{"file": ".trellis/workflow.md", "reason": "Project workflow and conventions"}
+{"file": ".trellis/spec/shared/index.md", "reason": "Project-wide shared specs index"}
+{"file": ".trellis/spec/shared/fighting-core-constraints.md", "reason": "Combat-core rules that refactors must preserve"}
+{"file": ".trellis/spec/shared/godot-directory-structure.md", "reason": "Placement rules for scripts, scenes, resources, and assets"}
+{"file": ".trellis/spec/shared/battle-runtime-boundaries.md", "reason": "Runtime/core/debug ownership boundaries"}
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "Check layer interactions before refactoring"}

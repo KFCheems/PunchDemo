@@ -1,0 +1,6 @@
+{"file": ".trellis/workflow.md", "reason": "Project workflow and conventions"}
+{"file": ".trellis/spec/shared/index.md", "reason": "Project-wide shared specs index"}
+{"file": ".trellis/spec/shared/godot-directory-structure.md", "reason": "Correct directory placement for fighter assets/resources/scenes"}
+{"file": ".trellis/spec/shared/data-driven-combat.md", "reason": "Fighter content should stay data-driven"}
+{"file": ".trellis/spec/shared/resource-naming.md", "reason": "Stable naming for fighter ids and resource files"}
+{"file": ".trellis/spec/guides/how-to-add-a-new-fighter.md", "reason": "Project fighter creation checklist"}

@@ -1,0 +1,37 @@
+{
+  "id": "<task-id>",
+  "name": "<task-id>",
+  "title": "Move Resource Migration: <move-id>",
+  "description": "Move <move-id> from fallback/demo code into resource-backed data while preserving deterministic combat behavior",
+  "status": "planning",
+  "dev_type": "fullstack",
+  "scope": "combat",
+  "priority": "P1",
+  "creator": "<developer>",
+  "assignee": "<developer>",
+  "createdAt": "<yyyy-mm-dd>",
+  "completedAt": null,
+  "branch": null,
+  "base_branch": "main",
+  "worktree_path": null,
+  "current_phase": 0,
+  "next_action": [
+    { "phase": 1, "action": "implement" },
+    { "phase": 2, "action": "check" },
+    { "phase": 3, "action": "finish" },
+    { "phase": 4, "action": "create-pr" }
+  ],
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [],
+  "parent": null,
+  "relatedFiles": [],
+  "notes": "",
+  "meta": {
+    "task_kind": "move-resource-migration",
+    "move_id": "<move-id>",
+    "fighter_id": "<fighter-id-or-common>",
+    "requires_replay_validation": true
+  }
+}

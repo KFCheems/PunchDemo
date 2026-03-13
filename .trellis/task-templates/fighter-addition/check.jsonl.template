@@ -1,0 +1,4 @@
+{"file": ".agents/skills/finish-work/SKILL.md", "reason": "Finish work checklist"}
+{"file": ".trellis/spec/shared/godot-directory-structure.md", "reason": "Validate placement of fighter files"}
+{"file": ".trellis/spec/shared/data-driven-combat.md", "reason": "Ensure fighter content uses shared combat architecture"}
+{"file": ".trellis/spec/guides/how-to-add-a-new-fighter.md", "reason": "Checklist for fighter completeness"}

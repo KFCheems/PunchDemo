@@ -23,6 +23,9 @@ These guides help you **ask the right questions before coding**.
 |-------|---------|-------------|
 | [Code Reuse Thinking Guide](./code-reuse-thinking-guide.md) | Identify patterns and reduce duplication | When you notice repeated patterns |
 | [Cross-Layer Thinking Guide](./cross-layer-thinking-guide.md) | Think through data flow across layers | Features spanning multiple layers |
+| [How to Add a New Fighter](./how-to-add-a-new-fighter.md) | Follow the project's required steps for adding a fighter without breaking runtime flow | When creating or migrating a fighter |
+| [How to Add a New Move](./how-to-add-a-new-move.md) | Add or migrate a move while preserving data-driven combat and replay stability | When introducing a move or changing move ownership |
+| [How to Add a New Stage](./how-to-add-a-new-stage.md) | Add a stage to assets, data, and runtime flow without mixing it into combat core | When creating a formal battle stage |
 
 ---
 

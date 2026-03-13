@@ -1,0 +1,6 @@
+{"file": ".trellis/workflow.md", "reason": "Project workflow and conventions"}
+{"file": ".trellis/spec/shared/index.md", "reason": "Project-wide shared specs index"}
+{"file": ".trellis/spec/shared/fighting-core-constraints.md", "reason": "Do not break deterministic combat constraints"}
+{"file": ".trellis/spec/shared/data-driven-combat.md", "reason": "Code vs resource ownership for move migration"}
+{"file": ".trellis/spec/shared/resource-naming.md", "reason": "Correct move/resource naming and placement"}
+{"file": ".trellis/spec/guides/how-to-add-a-new-move.md", "reason": "Project move migration checklist"}

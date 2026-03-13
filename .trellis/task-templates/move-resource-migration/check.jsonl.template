@@ -1,0 +1,4 @@
+{"file": ".agents/skills/finish-work/SKILL.md", "reason": "Finish work checklist"}
+{"file": ".trellis/spec/shared/fighting-core-constraints.md", "reason": "Validate move behavior against core combat invariants"}
+{"file": ".trellis/spec/shared/data-driven-combat.md", "reason": "Ensure move ownership moved toward resources"}
+{"file": ".trellis/spec/guides/how-to-add-a-new-move.md", "reason": "Checklist for move registration and validation"}

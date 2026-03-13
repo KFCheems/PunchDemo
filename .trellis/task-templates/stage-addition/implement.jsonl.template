@@ -1,0 +1,6 @@
+{"file": ".trellis/workflow.md", "reason": "Project workflow and conventions"}
+{"file": ".trellis/spec/shared/index.md", "reason": "Project-wide shared specs index"}
+{"file": ".trellis/spec/shared/godot-directory-structure.md", "reason": "Correct placement of stage assets and scenes"}
+{"file": ".trellis/spec/shared/resource-naming.md", "reason": "Stable stage ids and file naming"}
+{"file": ".trellis/spec/shared/battle-runtime-boundaries.md", "reason": "Keep stage work out of combat core"}
+{"file": ".trellis/spec/guides/how-to-add-a-new-stage.md", "reason": "Project stage creation checklist"}

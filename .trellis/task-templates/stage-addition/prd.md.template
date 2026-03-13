@@ -1,0 +1,40 @@
+# PRD: Add Stage - <stage-id>
+
+## Background
+
+This task adds a formal battle stage to the Godot fighting project using asset/data/runtime integration instead of combat-core modifications.
+
+## Scope (In)
+
+- Add stage background assets and optional BGM.
+- Add stage data entry.
+- Add stage scene if the stage needs scene-level structure.
+- Wire the stage into formal runtime selection/loading.
+
+## Scope (Out)
+
+- New combat core rules.
+- Stage hazards that require new deterministic combat systems, unless explicitly requested.
+- Networking or online synchronization.
+
+## Deliverables
+
+1. Stage assets.
+2. Stage data entry or resource.
+3. Optional stage scene.
+4. Runtime loading path through managers/runtime.
+5. Validation notes for battle scene.
+
+## Acceptance Criteria
+
+1. Stage can be loaded by stable stage id.
+2. Formal battle loads the background and BGM correctly or gracefully falls back.
+3. Fighters spawn in valid positions.
+4. Runtime flow remains stable.
+5. No stage logic was pushed into combat core unnecessarily.
+
+## Guardrails
+
+- Keep stage concerns in runtime/data/scene layers.
+- Do not hardcode multiple stage paths across unrelated files.
+- Prefer data registration over ad hoc scene branching.

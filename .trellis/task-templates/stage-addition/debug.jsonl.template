@@ -1,0 +1,3 @@
+{"file": ".trellis/spec/shared/battle-runtime-boundaries.md", "reason": "Debug stage/runtime ownership issues"}
+{"file": ".trellis/spec/shared/resource-naming.md", "reason": "Debug wrong asset/stage path usage"}
+{"file": ".trellis/spec/guides/how-to-add-a-new-stage.md", "reason": "Debug missed stage registration or runtime wiring steps"}

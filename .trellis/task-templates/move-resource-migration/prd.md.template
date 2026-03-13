@@ -1,0 +1,41 @@
+# PRD: Move Resource Migration - <move-id>
+
+## Background
+
+This task migrates `<move-id>` from fallback code or mixed ownership into resource-backed move data.
+
+The goal is to improve data-driven combat content without changing the intended move behavior.
+
+## Scope (In)
+
+- Create or update a `.tres` move resource for `<move-id>`.
+- Update fighter definition or data loading to reference the resource.
+- Preserve display ids, hitboxes, hurtboxes, frame timing, and return behavior.
+- Keep fallback logic only if needed for compatibility during transition.
+
+## Scope (Out)
+
+- Reworking unrelated move input resolution.
+- Rebalancing multiple other moves unless explicitly requested.
+- Removing the entire fallback path in the same task unless migration parity is already proven.
+
+## Deliverables
+
+1. Resource-backed move file for `<move-id>`.
+2. Updated loading/registration path.
+3. Visual mapping updates if new display ids were introduced.
+4. Validation notes for battle scene and debug sandbox.
+
+## Acceptance Criteria
+
+1. `<move-id>` can be started through normal action flow.
+2. Frame timing matches expected behavior.
+3. Hit behavior matches prior behavior or explicitly documented changes.
+4. Replay and/or sandbox behavior is not regressed.
+5. The move is no longer primarily defined by controller branching.
+
+## Guardrails
+
+- Keep combat rules in code and move content in resources.
+- Do not add move-specific timing logic to fighter controller just to make migration easier.
+- If parity is uncertain, retain a documented fallback temporarily.

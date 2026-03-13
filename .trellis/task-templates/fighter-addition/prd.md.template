@@ -1,0 +1,41 @@
+# PRD: Add Fighter - <fighter-id>
+
+## Background
+
+This task adds a fighter to the current Godot fighting project using the shared combat core and fighter base modules.
+
+## Scope (In)
+
+- Add fighter assets and atlas metadata.
+- Add fighter definition resource.
+- Add or map required move resources.
+- Add visual profile and display-id mapping.
+- Integrate the fighter into data loading and runtime selection.
+
+## Scope (Out)
+
+- Adding a custom combat core.
+- Duplicating the shared fighter controller stack.
+- Adding online-specific behavior.
+
+## Deliverables
+
+1. Fighter asset folder.
+2. Fighter definition resource.
+3. Visual profile or equivalent mapping.
+4. Move resource references.
+5. Validation notes for battle scene and sandbox.
+
+## Acceptance Criteria
+
+1. Fighter can be loaded by fighter id.
+2. Fighter renders using its own visual profile.
+3. Fighter can run at least the baseline move set.
+4. Formal battle scene loads the fighter.
+5. Debug sandbox can instantiate and run the fighter.
+
+## Guardrails
+
+- Reuse `fighter_base` unless a wrapper scene is genuinely needed.
+- Do not hardcode fighter atlas mappings into the shared visual script.
+- Keep fighter content in resources, not copied controller logic.

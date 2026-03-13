@@ -1,0 +1,46 @@
+# PRD: <task-title>
+
+## Background
+
+This task improves project structure or shared runtime architecture in the Godot fighting project without changing the intended combat rules.
+
+Typical examples:
+
+- slimming a shared controller
+- moving code across runtime/core boundaries
+- restructuring scenes
+- extracting shared modules
+
+## Scope (In)
+
+- Refactor targeted files and folders within the agreed architectural boundary.
+- Preserve deterministic combat behavior.
+- Preserve debug sandbox behavior unless the task explicitly includes sandbox updates.
+- Keep compatibility wrappers where migration risk is non-trivial.
+
+## Scope (Out)
+
+- New game mode content unless explicitly requested.
+- New online/networking systems.
+- Rewriting battle core rules as part of the refactor.
+
+## Deliverables
+
+1. Updated code structure for the targeted subsystem.
+2. Notes on any compatibility wrappers retained.
+3. Updated references/import paths.
+4. Validation notes for sandbox and/or formal battle runtime.
+
+## Acceptance Criteria
+
+1. The targeted architecture concern is simplified or clarified.
+2. Existing runtime entry paths still load.
+3. Sandbox and formal battle flow still use the same combat core.
+4. No new hardcoded gameplay rule duplication is introduced.
+5. The refactor follows current Trellis shared specs.
+
+## Guardrails
+
+- Prefer compatibility layers over breaking renames when reference churn is high.
+- Do not migrate gameplay logic into UI, runtime flow, or presentation layers.
+- If behavior changes are required, document them explicitly instead of hiding them inside the refactor.

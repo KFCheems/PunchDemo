@@ -1,0 +1,5 @@
+{"file": ".agents/skills/finish-work/SKILL.md", "reason": "Finish work checklist"}
+{"file": ".trellis/spec/shared/fighting-core-constraints.md", "reason": "Ensure combat invariants were preserved"}
+{"file": ".trellis/spec/shared/godot-directory-structure.md", "reason": "Ensure files landed in correct directories"}
+{"file": ".trellis/spec/shared/battle-runtime-boundaries.md", "reason": "Ensure runtime/core/debug ownership remains clean"}
+{"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "Check whether the refactor actually reduced duplication"}

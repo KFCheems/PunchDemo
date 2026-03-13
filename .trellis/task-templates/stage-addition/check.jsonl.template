@@ -1,0 +1,4 @@
+{"file": ".agents/skills/finish-work/SKILL.md", "reason": "Finish work checklist"}
+{"file": ".trellis/spec/shared/godot-directory-structure.md", "reason": "Validate placement of stage files"}
+{"file": ".trellis/spec/shared/battle-runtime-boundaries.md", "reason": "Ensure stage work stayed in runtime/data layers"}
+{"file": ".trellis/spec/guides/how-to-add-a-new-stage.md", "reason": "Checklist for stage completeness"}

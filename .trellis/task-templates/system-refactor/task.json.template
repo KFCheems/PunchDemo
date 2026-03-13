@@ -1,0 +1,36 @@
+{
+  "id": "<task-id>",
+  "name": "<task-id>",
+  "title": "<task-title>",
+  "description": "Refactor shared Godot gameplay/runtime architecture without breaking current combat behavior",
+  "status": "planning",
+  "dev_type": "fullstack",
+  "scope": "godot",
+  "priority": "P1",
+  "creator": "<developer>",
+  "assignee": "<developer>",
+  "createdAt": "<yyyy-mm-dd>",
+  "completedAt": null,
+  "branch": null,
+  "base_branch": "main",
+  "worktree_path": null,
+  "current_phase": 0,
+  "next_action": [
+    { "phase": 1, "action": "implement" },
+    { "phase": 2, "action": "check" },
+    { "phase": 3, "action": "finish" },
+    { "phase": 4, "action": "create-pr" }
+  ],
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [],
+  "parent": null,
+  "relatedFiles": [],
+  "notes": "",
+  "meta": {
+    "task_kind": "system-refactor",
+    "risk": "medium",
+    "requires_runtime_validation": true
+  }
+}
